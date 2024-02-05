@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>BLL_Projet_Cinema</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL-Projet-Cinema\DAL-Projet-Cinema.csproj" />
+    <ProjectReference Include="..\Shared-Projet-Cinema\Shared-Projet-Cinema.csproj" />
+  </ItemGroup>
+
+</Project>
