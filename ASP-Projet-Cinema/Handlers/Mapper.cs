@@ -34,13 +34,11 @@ namespace ASP_Projet_Cinema.Handlers
         public static CinemaPlace ToBLL(this CinemaPlaceCreateForm entity)
         {
             if (entity is null) return null;
-            return new CinemaPlace
-            {
-                Name = entity.Name,
-                City = entity.City,
-                Street = entity.Street,
-                Number = entity.Number
-            };
+            return new CinemaPlace(
+                entity.Name,
+                entity.City,
+                entity.Street,
+                entity.Number);
         }
 
         #endregion

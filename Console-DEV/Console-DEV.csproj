@@ -12,4 +12,11 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASP-Projet-Cinema\ASP-Projet-Cinema.csproj" />
+    <ProjectReference Include="..\BLL-Projet-Cinema\BLL-Projet-Cinema.csproj" />
+    <ProjectReference Include="..\DAL-Projet-Cinema\DAL-Projet-Cinema.csproj" />
+    <ProjectReference Include="..\Shared-Projet-Cinema\Shared-Projet-Cinema.csproj" />
+  </ItemGroup>
+
 </Project>
