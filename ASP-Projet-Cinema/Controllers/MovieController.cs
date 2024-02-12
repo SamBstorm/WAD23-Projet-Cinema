@@ -39,11 +39,15 @@ namespace ASP_Projet_Cinema.Controllers
         // POST: MovieController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(MovieCreateForm form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if(form is null) ModelState.AddModelError(nameof(form),"Le formulaire ne correspond pas");
+                if (!ModelState.IsValid) throw new Exception();
+                int id = _movieRepository.Insert(form.ToBLL());
+                await form.Poster.SaveFile();
+                return RedirectToAction(nameof(Details), new {id});
             }
             catch
             {
@@ -54,21 +58,26 @@ namespace ASP_Projet_Cinema.Controllers
         // GET: MovieController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            MovieEditForm model = _movieRepository.Get(id).ToEditForm();
+            return View(model);
         }
 
         // POST: MovieController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, MovieEditForm form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (form is null) ModelState.AddModelError(nameof(form), "Le formulaire ne correspond pas");
+                if (!ModelState.IsValid) throw new Exception();
+                _movieRepository.Update(form.ToBLL());
+                await form.Poster.SaveFile();
+                return RedirectToAction(nameof(Details), new {id});
             }
             catch
             {
-                return View();
+                return View(form);
             }
         }
 

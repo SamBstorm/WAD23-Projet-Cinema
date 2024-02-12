@@ -72,17 +72,47 @@ namespace ASP_Projet_Cinema.Handlers
             };
         }
 
-        //public static Movie ToBLL(this MovieCreateForm entity)
-        //{
-        //    if (entity is null) return null;
-        //    return new Movie
-        //    {
-        //        Name = entity.Name,
-        //        City = entity.City,
-        //        Street = entity.Street,
-        //        Number = entity.Number
-        //    };
-        //}
+
+        public static MovieEditForm ToEditForm(this Movie entity)
+        {
+            if (entity is null) return null;
+            return new MovieEditForm
+            {
+                Id_Movie = entity.Id_Movie,
+                Title = entity.Title,
+                SubTitle = entity.SubTitle,
+                ReleaseYear = entity.ReleaseYear,
+                Synopsis = entity.Synopsis,
+                PosterUrl = entity.PosterUrl,
+                Duration = entity.Duration
+            };
+        }
+
+        public static Movie ToBLL(this MovieCreateForm entity)
+        {
+            if (entity is null) return null;
+            return new Movie(
+                entity.Title,
+                entity.SubTitle,
+                entity.ReleaseYear,
+                entity.Synopsis,
+                entity.Poster.FileName,
+                entity.Duration
+            );
+        }
+
+        public static Movie ToBLL(this MovieEditForm entity)
+        {
+            if (entity is null) return null;
+            return new Movie(
+                entity.Title,
+                entity.SubTitle,
+                entity.ReleaseYear,
+                entity.Synopsis,
+                entity.Poster.FileName,
+                entity.Duration
+            );
+        }
 
         #endregion
     }

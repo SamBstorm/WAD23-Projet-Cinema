@@ -1,54 +1,25 @@
 ﻿@model ASP_Projet_Cinema.Models.MovieDetails
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"Fiche de {Model.Title} ({Model.ReleaseYear})";
 }
-
-<h1>Details</h1>
-
 <div>
-    <h4>MovieDetails</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SubTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SubTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Synopsis)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Synopsis)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PosterUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PosterUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-sm-6 col-md-8">
+            <h1>@Model.Title (@Model.ReleaseYear)</h1>
+            @if(!(Model.SubTitle is null)){
+                <h2>@Model.SubTitle</h2>
+            }
+            <p>(@Model.Duration minutes)</p>
+            <h4>@Html.DisplayNameFor(m=>m.Synopsis)</h4>
+            <p>@Model.Synopsis</p>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="~/assets/imgs/@Model.PosterUrl"/>
+        </div>
+    </div>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Revenir à la liste</a>
 </div>
